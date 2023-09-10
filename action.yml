@@ -10,10 +10,14 @@ inputs:
     required: false
     default: ''
     description: 'Relative path to the project to be built.'
+  containerVersion:
+    required: false
+    default: '1'
+    description: 'Version of docker tag to use for building the project.'
 outputs: {}
 branding:
   icon: 'box'
   color: 'gray-dark'
 runs:
   using: 'node12'
-  main: 'action/index.js'
+  main: 'dist/index.js'

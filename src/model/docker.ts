@@ -1,32 +1,28 @@
-import { exec } from '@actions/exec';
 import ImageTag from './image-tag';
+import { exec } from '@actions/exec';
 
-class Docker {
-  static async build(buildParameters, silent = false) {
+const Docker = {
+  async build(buildParameters, silent = false) {
     const { path, dockerfile, baseImage } = buildParameters;
-    const { version } = baseImage;
+    const { version, customImage, containerVersion } = baseImage;
 
-    const tag = ImageTag.createForAction(version);
+    const tag = new ImageTag(version, customImage, containerVersion);
     const command = `docker build ${path} \
       --file ${dockerfile} \
       --build-arg IMAGE=${baseImage} \
       --tag ${tag}`;
 
-    await exec(command, null, { silent });
+    await exec(command, undefined, { silent });
 
     return tag;
-  }
+  },
 
-  static async run(image, parameters, silent = false) {
-    const { workspace, unityVersion, projectPath } = parameters;
+  async run(image, parameters, silent = false) {
+    const { unityVersion, workspace, projectPath } = parameters;
 
     const command = `docker run \
         --workdir /github/workspace \
         --rm \
-        --env UNITY_LICENSE \
-        --env UNITY_EMAIL \
-        --env UNITY_PASSWORD \
-        --env UNITY_SERIAL \
         --env UNITY_VERSION=${unityVersion} \
         --env PROJECT_PATH="${projectPath}" \
         --env HOME=/github/home \
@@ -51,8 +47,8 @@ class Docker {
         --volume "${workspace}":"/github/workspace" \
         ${image}`;
 
-    await exec(command, null, { silent });
-  }
-}
+    await exec(command, undefined, { silent });
+  },
+};
 
 export default Docker;

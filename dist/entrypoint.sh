@@ -10,7 +10,7 @@ CREATE_OUTPUT=$(unity-editor \
       -batchmode \
       -nographics \
       -stackTraceLogType Full \
-      -logFile - \
+      -logFile /dev/stdout \
       -quit \
       -createProject $PROJECT_PATH)
 

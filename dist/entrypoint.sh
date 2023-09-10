@@ -3,7 +3,7 @@
 ACTIVATE_LICENSE_PATH="$GITHUB_WORKSPACE/_activate-license"
 mkdir -p "$ACTIVATE_LICENSE_PATH"
 
-source /steps/return_license.sh
+source /steps/activate.sh
 
 #
 # Display the unity version

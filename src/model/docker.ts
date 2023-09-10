@@ -23,6 +23,11 @@ const Docker = {
     const command = `docker run \
         --workdir /github/workspace \
         --rm \
+        --env UNITY_LICENSE \
+        --env UNITY_LICENSE_FILE \
+        --env UNITY_EMAIL \
+        --env UNITY_PASSWORD \
+        --env UNITY_SERIAL \
         --env UNITY_VERSION=${unityVersion} \
         --env PROJECT_PATH="${projectPath}" \
         --env HOME=/github/home \

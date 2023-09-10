@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+ACTIVATE_LICENSE_PATH="$GITHUB_WORKSPACE/_activate-license"
+mkdir -p "$ACTIVATE_LICENSE_PATH"
+
+source /steps/return_license.sh
 
 #
 # Display the unity version
@@ -16,6 +20,14 @@ CREATE_OUTPUT=$(unity-editor \
 
 # Store the exit code from the verify command
 UNITY_EXIT_CODE=$?
+
+source /steps/return_license.sh
+
+#
+# Remove license activation directory
+#
+
+rm -r "$ACTIVATE_LICENSE_PATH"
 
 #
 # Display information about the result

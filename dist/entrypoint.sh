@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-source /steps/activate.sh
 
 #
 # Display the unity version
@@ -35,8 +34,6 @@ else
   echo "###########################"
   echo ""
 fi
-
-source /steps/return_license.sh
 
 #
 # Exit with code from Unity process

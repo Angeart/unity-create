@@ -10,7 +10,7 @@ CREATE_OUTPUT=$(unity-editor \
       -batchmode \
       -nographics \
       -stackTraceLogType Full \
-      -logFile /dev/stdout \
+      -logFile unity.log \
       -quit \
       -createProject $PROJECT_PATH)
 
@@ -33,6 +33,7 @@ else
   echo "#         Failure         #"
   echo "###########################"
   echo ""
+  cat unity.log
 fi
 
 #
